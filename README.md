@@ -1,46 +1,31 @@
-# 🌠 Le Mystère Mandelbrot
+# 🌠 Fractals Generator
 
-![Fractale Mystique](Ethereal_Mandala_6107.png)  
-*Une fenêtre sur l'infini - Générée par un simple calcul mathématique*
-
----
-
-## Qu'est ce que s'est ?
-
-Imaginez une **carte** de l'univers où chaque point est soumis à ce test :  
-_"Que se passe-t-il si je répète sans fin cette formule:  
-`nouvelle_position = ancienne_position² + point_départ` ?"_
+![Fractale générée](Ethereal_Mandala_6107.png)
 
 ---
 
-## 🔍 Pourquoi c'est fascinant ?
+## **Présentation du Projet**
 
-1. **Infini dans l'infini**  
-   Zoommez 1000x : mêmes motifs réapparaissent, **jamais identiques**.  
-   *Comme un miroir qui refléterait des mondes sans fin.*
-
-2. **Frontière du chaos**  
-   La ligne entre stabilité (noir) et chaos (couleurs) crée des **formes organiques**
-
-3. **Simple + Complexe = Magie**  
-   Une équation basique (`z² + c`) crée des paysages **plus détaillés que le réel**.  
-   *C'est comme si les mathématiques cachaient un langage secret de la nature.*
-
+Ce programme génère des représentations visuelles de l'ensemble de Mandelbrot, une structure mathématique emblématique des fractales. À partir d'une équation simple (`zₙ₊₁ = zₙ² + c`), il affiche des motifs géométriques complexes en haute résolution (8K).
 
 ---
 
-## 🎮 Jouez avec ! 
+## **Fonctionnement Technique**
 
-1. [Explorez en temps réel](https://mandelbrot.surge.sh) (glissez/zoomez)  
-2. Devinez ce que cachent ces formes :  
-   - Bulbes 👽 → Mini-Mandelbrots cachés  
-   - Filaments 🕸️ → Autoroutes mathématiques  
-3. Cherchez des visages/animaux : Notre cerveau y voit de la vie !
+### Algorithme Clé
+```python
+def compute_mandelbrot(xmin, xmax, ymin, ymax, width, height, max_iter):
+    # Initialisation du plan complexe
+    x = np.linspace(xmin, xmax, width)
+    y = np.linspace(ymin, ymax, height)
+    c = x + y[:, None] * 1j  # Grille de nombres complexes
+    z = np.zeros_like(c)
+    divergence_map = np.zeros(c.shape, dtype=np.uint16)
+    mask = np.ones(c.shape, dtype=bool)
 
-*Astuce : Observez longtemps... l'effet hypnotique est garanti !*
-
----
-
-**Le Saviez-vous ?**  
-Cette forme était *invisible* avant les années 80.  
-Il a fallu des ordinateurs puissants pour révéler ce trésor caché dans les nombres ✨
+    for _ in range(max_iter):
+        z[mask] = z[mask]**2 + c[mask]  # Application de la formule
+        mask = np.abs(z) < 4.0          # Condition de divergence
+        divergence_map += mask          # Enregistrement des itérations
+    
+    return divergence_map
