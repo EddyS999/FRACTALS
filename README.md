@@ -7,6 +7,7 @@
 ## **Definition**
 
 This python script generates visual representation of Mandelbrot set, mathematical structure, emblematic figure of fractals. From this simple equation (`zₙ₊₁ = zₙ² + c`), it displays geometrical structures in high resolutions. 
+
 ---
 
 ## **Behind the scene**
