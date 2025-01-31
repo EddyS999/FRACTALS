@@ -5,14 +5,12 @@
 ---
 
 ## **Présentation du Projet**
-
-Ce programme génère des représentations visuelles de l'ensemble de Mandelbrot, une structure mathématique emblématique des fractales. À partir d'une équation simple (`zₙ₊₁ = zₙ² + c`), il affiche des motifs géométriques complexes en haute résolution (8K).
-
+This python script generates visual representation of Mandelbrot set, a mathematical structure emblematic figure of fractals. From this simple equation (`zₙ₊₁ = zₙ² + c`), it displays geometrical structures in high resolutions 
 ---
 
-## **Fonctionnement Technique**
+## **Behind the scene**
 
-### Algorithme Clé
+### Key algorithm
 ```python
 def compute_mandelbrot(xmin, xmax, ymin, ymax, width, height, max_iter):
     # Initialisation du plan complexe
