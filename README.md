@@ -29,3 +29,4 @@ def compute_mandelbrot(xmin, xmax, ymin, ymax, width, height, max_iter):
         divergence_map += mask          # Enregistrement des itérations
     
     return divergence_map
+
